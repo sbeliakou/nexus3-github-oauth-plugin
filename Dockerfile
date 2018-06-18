@@ -2,8 +2,7 @@ FROM maven:3.5.2 as builder
 MAINTAINER matt.brewster@base2s.com
 COPY . /build
 WORKDIR /build
-RUN mvn clean package
-
+RUN mvn versions:set -DnewVersion=docker; mvn clean package
 
 FROM sonatype/nexus3:3.12.0
 ARG VERSION=2.0.1
